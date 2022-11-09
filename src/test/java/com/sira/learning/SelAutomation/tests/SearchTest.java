@@ -1,4 +1,4 @@
-package com.sira.learning.SelAutomation;
+package com.sira.learning.SelAutomation.tests;
 
 import java.time.Duration;
 
@@ -6,24 +6,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class SmokeTest {
+import com.sira.learning.SelAutomation.utils.BaseTest;
+
+public class SearchTest extends BaseTest {
 	WebDriver driver;
 
-	@BeforeTest
-	public void createDriver() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\navee\\Projects\\SelAutomation\\lib\\chromedriver.exe");
-		driver = new ChromeDriver();
-		driver.get("http://automationpractice.com/");
-		driver.manage().window().maximize();
-		String title = driver.getTitle();
-		System.out.println(title);
+	@BeforeClass
+	public void setDriver() {
+		this.driver =getDriver();
 	}
-
-	@Test(priority = 1)
+	@Test(priority = 3)
 	public void verify_search_of_tshirt() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.findElement(By.id("search_query_top")).clear();
@@ -36,7 +32,7 @@ public class SmokeTest {
 
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 4)
 	public void verify_search_of_summer_dress() {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.findElement(By.id("search_query_top")).clear();
@@ -49,10 +45,6 @@ public class SmokeTest {
 
 	}
 
-	@AfterTest
-	public void tearDown() {
-		driver.close();
-		driver.quit();
-	}
+	
 
 }

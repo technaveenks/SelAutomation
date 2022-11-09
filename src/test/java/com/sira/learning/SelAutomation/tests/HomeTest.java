@@ -1,4 +1,4 @@
-package com.sira.learning.SelAutomation;
+package com.sira.learning.SelAutomation.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

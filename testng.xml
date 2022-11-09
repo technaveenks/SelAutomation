@@ -3,7 +3,7 @@
 <suite name="Selenium">
   <test thread-count="5" name="AutomationPractise">
     <classes>
-      <class name="com.sira.learning.SelAutomation.SmokeTest"/>
+      <class name="com.sira.learning.SelAutomation.tests.SmokeTest"/>
     </classes>
   </test> <!-- AutomationPractise -->
 </suite> <!-- Selenium -->
