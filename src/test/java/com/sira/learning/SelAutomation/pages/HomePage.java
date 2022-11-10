@@ -1,6 +1,5 @@
 package com.sira.learning.SelAutomation.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,8 +26,9 @@ public class HomePage extends BasePage {
 		_searchTextBox.sendKeys(searchValue);
 	}
 
-	public void clickOnSearch() {
+	public SearchResultsPage clickOnSearch() {
 		_searchButton.click();
+		return new SearchResultsPage(getDriver());
 	}
 
 }
