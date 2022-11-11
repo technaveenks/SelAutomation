@@ -9,7 +9,7 @@ public class SmokeTest_old extends BaseTest {
 	// WebDriver driver;
 	HomePage homePage;
 
-	@BeforeClass
+	//@BeforeClass
 	public void setDriver() {
 		homePage = new HomePage(getDriver());
 		// this.driver = getDriver();

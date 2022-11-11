@@ -2,14 +2,17 @@ package com.sira.learning.SelAutomation.tests;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import com.sira.learning.SelAutomation.pages.HomePage;
 import com.sira.learning.SelAutomation.utils.BaseTest;
+
+
 
 public class SmokeTest extends BaseTest {
 	// WebDriver driver;
 	HomePage homePage;
 
-	@BeforeClass
+//	@BeforeClass
 	public void setDriver() {
 		homePage = new HomePage(getDriver());
 	}

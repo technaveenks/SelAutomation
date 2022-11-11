@@ -5,28 +5,28 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-public class BaseTest {
-	WebDriver driver;
+public class BaseTestms {
+	private WebDriver driver;
+
 	public WebDriver getDriver() {
 		return driver;
 	}
 
-	//@BeforeTest
+	@BeforeTest
 	public void createDriver() {
 		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\navee\\Projects\\SelAutomation\\lib\\chromedriver.exe");
+				"C:\\Users\\sravanthi.mallela9\\OneDrive\\Documents\\GitHub\\SelAutomation\\lib\\chromedriver.exe");
 		driver = new ChromeDriver();
-		driver.get("http://tutorialsninja.com/demo/");
+		driver.get("http://www.tutorialsninja.com/demo/");
 		driver.manage().window().maximize();
 		String title = driver.getTitle();
 		System.out.println(title);
 	}
-	
-//	@AfterTest
+
+	@AfterTest
 	public void tearDown() {
 		driver.close();
 		driver.quit();
 	}
-
 
 }

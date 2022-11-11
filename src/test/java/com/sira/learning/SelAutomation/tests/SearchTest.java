@@ -15,7 +15,7 @@ import com.sira.learning.SelAutomation.utils.BaseTest;
 public class SearchTest extends BaseTest {
 	WebDriver driver;
 
-	@BeforeClass
+	//@BeforeClass
 	public void setDriver() {
 		this.driver =getDriver();
 	}
