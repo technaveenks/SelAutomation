@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.sira.learning.SelAutomation.pages.HomePage;
 import com.sira.learning.SelAutomation.pages.SearchResultsPage;
+import com.sira.learning.SelAutomation.pages.TabletsPage;
 import com.sira.learning.SelAutomation.pages.ViewCartPage;
 import com.sira.learning.SelAutomation.utils.BaseTest;
 
@@ -12,10 +13,11 @@ public class SmokeTest extends BaseTest {
 	HomePage homePage;
 	SearchResultsPage searchResultsPage;
 	ViewCartPage viewCartPage;
-	
+	TabletsPage tabletPage;
+
 	@BeforeClass
 	public void setDriver() {
-		homePage = new HomePage(getDriver());		
+		homePage = new HomePage(getDriver());
 	}
 
 	@Test(priority = 1)
@@ -29,7 +31,7 @@ public class SmokeTest extends BaseTest {
 		String acknowledgementText = searchResultsPage.getAcknowledgementText();
 		System.out.println(acknowledgementText);
 		viewCartPage = searchResultsPage.clickOnViewCart();
-		
+
 		// String name = driver.findElement(By.partialLinkText("Faded Short Sleeve
 		// T-shirts")).getText();
 		// String name = driver.findElement(By.xpath("//h5/a[contains(@title,'Faded
@@ -43,15 +45,25 @@ public class SmokeTest extends BaseTest {
 		homePage.clearSearchText();
 		homePage.enterSearchText("MacBook");
 		homePage.clickOnSearch();
-		  
-		
+
 		/*
 		 * // String name = driver.findElement(By.partialLinkText("Faded Short Sleeve //
 		 * T-shirts")).getText(); String name = driver.findElement(By.xpath(
 		 * "//*[@id=\"center_column\"]/ul/li[1]/div/div[2]/h5/a")).getText();
 		 * System.out.println(name);
 		 */
-		 
+
+	}
+
+	@Test(priority = 0)
+	public void verifyItemOnCart() {
+		tabletPage = homePage.clickOnTabletsMenu();
+		System.out.println(tabletPage.getItemDescription());
+		tabletPage.clickOnAddToCart();
+		tabletPage.clickOnCart();
+		viewCartPage = tabletPage.clickOnViewCartLink();
+		System.out.println(viewCartPage.getItemDescription());
+
 	}
 
 }
