@@ -15,6 +15,9 @@ public class TabletsPage extends BasePage {
 		super(driver);
 	}
 
+	@FindBy(xpath="//*[@id='content']/div[2]/div/div/div[2]/div[1]/h4/a")
+	private WebElement _itemTitle;
+	
 	@FindBy(xpath = "//*[@id='content']/div[2]/div/div/div[2]/div[1]/p[1]")
 	private WebElement _tabletItemDescription;
 
@@ -26,6 +29,10 @@ public class TabletsPage extends BasePage {
 
 	@FindBy(xpath = "//*[@id='cart']/ul/li[2]/div/p/a[1]")
 	private WebElement _clickOnViewCartLink;
+	
+	public String getItemTitle() {
+		return _itemTitle.getText();
+	}
 
 	public String getItemDescription() {
 		return _tabletItemDescription.getText();

@@ -1,7 +1,10 @@
 package com.sira.learning.SelAutomation.tests;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import com.sira.learning.SelAutomation.pages.HomePage;
 import com.sira.learning.SelAutomation.pages.SearchResultsPage;
 import com.sira.learning.SelAutomation.pages.TabletsPage;
@@ -9,6 +12,7 @@ import com.sira.learning.SelAutomation.pages.ViewCartPage;
 import com.sira.learning.SelAutomation.utils.BaseTest;
 
 public class SmokeTest extends BaseTest {
+	SoftAssert sAssert = new SoftAssert();
 	// WebDriver driver;
 	HomePage homePage;
 	SearchResultsPage searchResultsPage;
@@ -58,12 +62,18 @@ public class SmokeTest extends BaseTest {
 	@Test(priority = 0)
 	public void verifyItemOnCart() {
 		tabletPage = homePage.clickOnTabletsMenu();
+		String itemTitle = tabletPage.getItemTitle();
+		System.out.println("Step 1");
+		sAssert.assertEquals("Samsung Galaxy Tab 10.0", itemTitle);
+		System.out.println("Step 2");
+		System.out.println(itemTitle);
 		System.out.println(tabletPage.getItemDescription());
 		tabletPage.clickOnAddToCart();
 		tabletPage.clickOnCart();
 		viewCartPage = tabletPage.clickOnViewCartLink();
 		System.out.println(viewCartPage.getItemDescription());
-
+		sAssert.assertEquals("Samsung Galaxy Tab 10.1", viewCartPage.getItemDescription());
+		sAssert.assertAll();
 	}
 
 }
