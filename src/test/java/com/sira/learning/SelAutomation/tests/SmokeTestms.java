@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import com.sira.learning.SelAutomation.pages.HomePagems;
 import com.sira.learning.SelAutomation.pages.SearchResultsPagems;
+import com.sira.learning.SelAutomation.pages.TabletsPagems;
 import com.sira.learning.SelAutomation.pages.ViewCartPagems;
 import com.sira.learning.SelAutomation.utils.BaseTestms;
 
@@ -18,13 +19,14 @@ public class SmokeTestms extends BaseTestms {
 	HomePagems homePagems;
 	SearchResultsPagems searchResultsPagems;
 	ViewCartPagems viewCartPagems;
-	//@BeforeTest
+	TabletsPagems tabletsPagems;
+	@BeforeTest
 	@BeforeClass
 	public void setDriver(){
 		homePagems = new HomePagems(getDriver());
 	}
 	
-	@Test
+	@Test(priority=1)
 	public  void verify_search_results1() throws InterruptedException {
 		
 		homePagems.clearSearchText();
@@ -38,7 +40,7 @@ public class SmokeTestms extends BaseTestms {
 		searchResultsPagems.clickOnItems();
 		viewCartPagems = searchResultsPagems.clickOnViewCart();
 		String productname = viewCartPagems.getProductNameInCart();
-		System.out.println("The Product Name in the cart is: " +productname);
+		System.out.println("The first product in cart is: " +productname);
 		
 		/*
 		 * String data =
@@ -68,6 +70,21 @@ public class SmokeTestms extends BaseTestms {
 		//driver.findElement(By.xpath("//*[contains(@id,'top-links')]/ul/li[4]/a")).click();
 
 	}
+	@Test(priority=0)
+	public void verifyItemOnCart() {
+		 
+		tabletsPagems = homePagems.clickOnTabletsMenu();
+		String tabletDescription = tabletsPagems.getTabletItemDescription();
+		System.out.println("Tablet Description is : " + tabletDescription);
+		tabletsPagems.clickOnAddToCart();
+		tabletsPagems.clickOnItemsTab();
+		//System.out.println("Clicked on items tab");
+		viewCartPagems = tabletsPagems.clickOnViewCartLink();
+		String tabletdescriptionincart = viewCartPagems.getProductNameInCart();
+		System.out.println("The Second product in cart is " +tabletdescriptionincart);
+		
+			}
+	
 	
 	}
 

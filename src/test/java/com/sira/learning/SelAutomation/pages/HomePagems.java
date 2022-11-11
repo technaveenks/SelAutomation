@@ -19,7 +19,10 @@ public class HomePagems extends BasePagems {
 	@FindBy(xpath = "//*[contains(@class,'input-group-btn')]/button")
 	// @FindBy(xpath = "//*[@id='search']/input")
 	private WebElement _searchButton;
-
+	
+	@FindBy(xpath = "//*[@id='menu']/div[2]/ul/li[4]/a")
+	private WebElement _menuTablets;
+	
 	// Actions on the element
 
 	public void clearSearchText() {
@@ -36,4 +39,8 @@ public class HomePagems extends BasePagems {
 		return new SearchResultsPagems(getDriver());
 	}
 
+	public TabletsPagems clickOnTabletsMenu() {
+		_menuTablets.click();
+		return new TabletsPagems(getDriver());
+	}
 }
