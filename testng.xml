@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Selenium">
+<suite name="SeleniumSuite">
   <test thread-count="5" name="AutomationPractise">
     <classes>
-      <class name="com.sira.learning.SelAutomation.SmokeTest"/>
+      <class name="com.sira.learning.SV.SelAutomation.SR_SearchPageTest"/>
+      
     </classes>
   </test> <!-- AutomationPractise -->
-</suite> <!-- Selenium -->
+</suite> <!-- SeleniumSuite -->
