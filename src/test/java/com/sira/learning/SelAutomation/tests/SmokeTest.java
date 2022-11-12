@@ -1,6 +1,7 @@
 package com.sira.learning.SelAutomation.tests;
 
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -24,10 +25,15 @@ public class SmokeTest extends BaseTest {
 		homePage = new HomePage(getDriver());
 	}
 
-	@Test(priority = 1)
-	public void verify_search_of_tshirt() throws InterruptedException {
+	@DataProvider(name = "items")
+	public static Object[][] items(){
+		return new Object[][] {{"iPhone","Value"},{"MacBook","Printer"}, {"Samsung SyncMaster 941BW","mouse"},{"Samsung Galaxy Tab 10.1","tablet"}};
+	}
+	// Samsung SyncMaster 941BW    MacBook iPhone
+	@Test(priority = 1, dataProvider ="items" )
+	public void verify_search_of_tshirt(String item, String value) throws InterruptedException {
 		homePage.clearSearchText();
-		homePage.enterSearchText("iphone");
+		homePage.enterSearchText(item);
 		searchResultsPage = homePage.clickOnSearch();
 		String description = searchResultsPage.getProductDescription();
 		System.out.println("The Description is " + description);
@@ -35,6 +41,7 @@ public class SmokeTest extends BaseTest {
 		String acknowledgementText = searchResultsPage.getAcknowledgementText();
 		System.out.println(acknowledgementText);
 		viewCartPage = searchResultsPage.clickOnViewCart();
+		System.out.println(value);
 
 		// String name = driver.findElement(By.partialLinkText("Faded Short Sleeve
 		// T-shirts")).getText();
