@@ -7,7 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class DataUtility {
+public class DataUtilityms {
 	private static XSSFWorkbook excelWBook;
 	private static XSSFSheet excelSheet;
 	private static XSSFRow row;

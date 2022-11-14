@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Selenium">
-  <test thread-count="5" name="AutomationPractise">
-    <classes>
-      <class name="com.sira.learning.SelAutomation.tests.SmokeTest"/>
-    </classes>
-  </test> <!-- AutomationPractise -->
+	<listeners>
+		<listener
+			class-name="com.sira.learning.SelAutomation.utils.Listenersms"></listener>
+	</listeners>
+	<test thread-count="5" name="AutomationPractise">
+		<classes>
+			<class name="com.sira.learning.SelAutomation.tests.SmokeTestms" />
+		</classes>
+	</test> <!-- AutomationPractise -->
 </suite> <!-- Selenium -->
