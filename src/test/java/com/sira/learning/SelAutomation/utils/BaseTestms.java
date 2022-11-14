@@ -14,8 +14,10 @@ public class BaseTestms {
 
 	@BeforeTest
 	public void createDriver() {
-		System.setProperty("webdriver.chrome.driver",
-				"C:\\Users\\sravanthi.mallela9\\OneDrive\\Documents\\GitHub\\SelAutomation\\lib\\chromedriver.exe");
+		String path = System.getProperty("user.dir");
+		System.setProperty("webdriver.chrome.driver",  path + "/lib/chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver",
+				//"C:\\Users\\sravanthi.mallela9\\OneDrive\\Documents\\GitHub\\SelAutomation\\lib\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.get("http://www.tutorialsninja.com/demo/");
 		driver.manage().window().maximize();

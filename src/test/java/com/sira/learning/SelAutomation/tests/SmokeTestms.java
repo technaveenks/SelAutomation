@@ -7,14 +7,20 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import com.sira.learning.SelAutomation.pages.HomePagems;
 import com.sira.learning.SelAutomation.pages.SearchResultsPagems;
 import com.sira.learning.SelAutomation.pages.TabletsPagems;
 import com.sira.learning.SelAutomation.pages.ViewCartPagems;
 import com.sira.learning.SelAutomation.utils.BaseTestms;
 
+import dev.failsafe.internal.util.Assert;
+
 public class SmokeTestms extends BaseTestms {
+	SoftAssert sAssert = new SoftAssert();
 	//WebDriver driver;
 	HomePagems homePagems;
 	SearchResultsPagems searchResultsPagems;
@@ -26,11 +32,17 @@ public class SmokeTestms extends BaseTestms {
 		homePagems = new HomePagems(getDriver());
 	}
 	
-	@Test(priority=1)
-	public  void verify_search_results1() throws InterruptedException {
+	@DataProvider(name = "items")
+	public static Object[][] items() {
+		return new Object[][] {{"Nikon"},{"iphone"},{"Macbook"},{"Samsung SyncMaster 941BW"}};
+		
+	}
+	//Nikon Samsung SyncMaster 941BW iphone macbook
+	@Test(priority=1 , dataProvider = "items")
+	public  void verify_search_results1(String items) throws InterruptedException {
 		
 		homePagems.clearSearchText();
-		homePagems.enterSearchText("nikon");
+		homePagems.enterSearchText(items);
 		searchResultsPagems = homePagems.clickOnSearch();
 		String description = searchResultsPagems.getProductDescription();
 		System.out.println("The Description is : " +description);
@@ -42,36 +54,16 @@ public class SmokeTestms extends BaseTestms {
 		String productname = viewCartPagems.getProductNameInCart();
 		System.out.println("The first product in cart is: " +productname);
 		
-		/*
-		 * String data =
-		 * driver.findElement(By.partialLinkText("Canon EOS 5D")).getText();
-		 * System.out.println(data); String price =
-		 * driver.findElement(By.xpath("//*[contains(@class,'price-old')] ")).getText();
-		 * System.out.println("Old Price is: " + price); String price1 =
-		 * driver.findElement(By.xpath("//*[contains(@class,'price-new')] ")).getText();
-		 * System.out.println("New Price is: " + price1);
-		 */
-		//driver.findElement(By.xpath("//*[contains(@class,'button-group')]")).click();
-		//driver.findElement(By.xpath("//*[contains(@id,'button-cart')]")).click();
-
-	}
+			}
 	
 	@Test(priority=2)
 	public void adding_cart() {
 		homePagems.clearSearchText();
 		homePagems.enterSearchText("nikon");
 		homePagems.clickOnSearch();
-		//driver.findElement(By.xpath("//*[contains(@class,'input-group-btn')]/button")).click();  //clicks on search button
-		//driver.findElement(By.xpath("//*[contains(@class,'button-group')]")).click(); //  clicks on add to cart
-		//driver.findElement(By.xpath("//*[contains(@class,'btn-group btn-block')]")).click(); //clicks on items tab
-		//driver.findElement(By.xpath("//*[contains(@class,'col-sm-3')]/button")).click();
-		//driver.findElement(By.xpath("//*[contains(@id,'cart')]/button")).click();
-
-		//driver.findElement(By.xpath("//*[contains(@id,'top-links')]/ul/li[4]/a")).click();
-
-	}
+			}
 	@Test(priority=0)
-	public void verifyItemOnCart() {
+	public void verifyItemOnCart() throws InterruptedException {
 		 
 		tabletsPagems = homePagems.clickOnTabletsMenu();
 		String tabletDescription = tabletsPagems.getTabletItemDescription();
@@ -82,6 +74,8 @@ public class SmokeTestms extends BaseTestms {
 		viewCartPagems = tabletsPagems.clickOnViewCartLink();
 		String tabletdescriptionincart = viewCartPagems.getProductNameInCart();
 		System.out.println("The Second product in cart is " +tabletdescriptionincart);
+		sAssert.assertEquals("Samsung Galaxy Tab 10.1" , viewCartPagems.getProductNameInCart() );
+		sAssert.assertAll();
 		
 			}
 	

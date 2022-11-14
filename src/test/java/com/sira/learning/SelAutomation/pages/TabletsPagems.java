@@ -20,10 +20,9 @@ public class TabletsPagems extends BasePagems {
 	private WebElement _clickOnItems;
 	
 	@FindBy(xpath="//*[@id='cart']/ul/li[2]/div/p/a[1]")
-	//*[@id="cart"]/ul/li[2]/div/p/a[1]/strong
+	//*[@id="cart"]/button
 	//*[@id="cart"]/ul/li[2]/div/p/a[1]
-	private WebElement _viewCartLink;
-	
+		private WebElement _viewCartLink;
 	
 	public String getTabletItemDescription() {
 		String tabletDescription = _tabletItemDescription.getText();
@@ -35,16 +34,14 @@ public class TabletsPagems extends BasePagems {
 	}
 	
 	public void clickOnItemsTab() {
+		getDriver().navigate().refresh();
 		_clickOnItems.click();
 	}
 	
-	public ViewCartPagems clickOnViewCartLink() {
+	public ViewCartPagems clickOnViewCartLink() throws InterruptedException {
+		Thread.sleep(5000);
 		_viewCartLink.click();
 		return new ViewCartPagems(getDriver());
 	}
 	
-	
-	
-	
-
 }
